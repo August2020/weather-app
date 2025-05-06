@@ -18,11 +18,10 @@ class WeatherController extends Controller
         $geoResponse = Http::withHeaders([
             'User-Agent' => 'YourAppName/1.0'
         ])->get('https://nominatim.openstreetmap.org/search', [
-            'q' => $city,
-            'format' => 'json',
-            'limit' => 1,
-        ]);
-        
+                    'q' => $city,
+                    'format' => 'json',
+                    'limit' => 1,
+                ]);
 
         if ($geoResponse->failed() || count($geoResponse->json()) === 0) {
             return response()->json(['error' => 'City not found.'], 404);
